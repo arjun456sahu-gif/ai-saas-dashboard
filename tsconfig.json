@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-  ],
+, "app/(dashboard)/analytics/page.jsx", "app/(dashboard)/dashboard/page.jsx", "components/charts/revenue-chart.js"  ],
   "exclude": ["node_modules"]
 }
