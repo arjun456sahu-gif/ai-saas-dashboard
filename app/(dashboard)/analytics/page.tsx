@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "../../../components/ui/card"
 import { MainAnalyticsChart } from "../../../components/charts/main-analytics-charts"
-import { Navbar } from "@/components/layout/Navbar"
+// import { Navbar } from "@/components/Navbar"
 import { 
   Calendar, Download, ChevronDown, Sparkles, Filter, 
   Search, ArrowUpDown, MoreHorizontal, LayoutGrid, Users, Activity
@@ -9,7 +9,7 @@ import {
 export default function AnalyticsPage() {
   return (
     <>
-    <Navbar/>
+    {/* <Navbar/> */}
     <div className="flex-1 space-y-8 p-6 md:p-8 pt-6 bg-background min-h-screen">
       
       {/* =========================================
@@ -45,6 +45,7 @@ export default function AnalyticsPage() {
               Last 30 Days
               <ChevronDown className="ml-2 h-4 w-4 opacity-50" />
             </button>
+            
             
             {/* User Type Filter */}
             <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium border border-border/50 bg-background hover:bg-muted h-9 px-4 transition-colors">
