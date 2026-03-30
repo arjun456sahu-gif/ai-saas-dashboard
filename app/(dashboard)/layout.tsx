@@ -54,7 +54,7 @@ export default function DashboardLayout({
             />
             
             {/* Sidebar with Slide-out effect */}
-            <div className="absolute inset-y-0 left-0 w-[280px] bg-card border-r border-border/50 shadow-2xl animate-in slide-in-from-left duration-300 flex flex-col">
+            <div className="absolute inset-y-0 left-0 w-70 bg-card border-r border-border/50 shadow-2xl animate-in slide-in-from-left duration-300 flex flex-col">
               <div className="h-16 flex items-center justify-between px-6 border-b border-border/50">
                 <span className="font-bold text-foreground flex items-center gap-2">
                   <Hexagon className="h-5 w-5 text-primary" /> Nexus
