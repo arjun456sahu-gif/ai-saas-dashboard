@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "../../../components/ui/card"
-import { RevenueChart } from "../../../components/charts/revenue-chart"
+import  RevenueChart  from "../../../components/charts/revenue-chart"
 import { RecentActivity } from "../../../components/charts/recent-activity"
 import { DollarSign, Users, Activity, ArrowUpRight, TrendingUp } from "lucide-react"
 
