@@ -46,7 +46,7 @@ export default function DashboardLayout({
 
         {/* 2. MOBILE OVERLAY MENU (Slide-in) */}
         {isMobileMenuOpen && (
-          <div className="fixed inset-0 z-[100] lg:hidden">
+          <div className="fixed inset-0 z-50 lg:hidden">
             {/* Backdrop with Fade-out effect */}
             <div 
               className="absolute inset-0 bg-background/80 backdrop-blur-sm animate-in fade-in duration-300"

@@ -45,7 +45,7 @@ export default function AnalyticsPage() {
               Last 30 Days
               <ChevronDown className="ml-2 h-4 w-4 opacity-50" />
             </button>
-            
+
             
             {/* User Type Filter */}
             <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium border border-border/50 bg-background hover:bg-muted h-9 px-4 transition-colors">
@@ -186,7 +186,7 @@ export default function AnalyticsPage() {
               <input
                 type="text"
                 placeholder="Search users or emails..."
-                className="h-9 w-full sm:w-[250px] lg:w-[300px] rounded-md border border-input bg-background pl-9 pr-4 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-indigo-500"
+                className="h-9 w-full sm:w-62.5 lg:w-75 rounded-md border border-input bg-background pl-9 pr-4 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-indigo-500"
               />
             </div>
             <button className="inline-flex h-9 items-center justify-center rounded-md border border-border/50 bg-background px-3 text-sm font-medium shadow-sm hover:bg-muted text-foreground transition-colors">
