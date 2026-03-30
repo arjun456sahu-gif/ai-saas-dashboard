@@ -5,7 +5,7 @@ import "./globals.css" // 👈 This brings your Tailwind CSS back!
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: " AI SaaS Platform",
+  title: "TEMPLATE AI SaaS Platform",
   description: "The ultimate AI SaaS boilerplate.",
 }
 
