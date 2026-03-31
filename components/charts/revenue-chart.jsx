@@ -1,73 +1,102 @@
 "use client"
 
-import { useEffect, useRef } from "react"
-// Explicitly import CandlestickSeries for v5 stability
-import { createChart, ColorType, CandlestickSeries } from "lightweight-charts"
+import React from 'react'
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Filler,
+  Legend,
+} from 'chart.js'
+import { Line } from 'react-chartjs-2'
+
+// Register ChartJS modules
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Filler,
+  Legend
+)
 
 export default function RevenueChart() {
-  const chartContainerRef = useRef(null)
-
-  useEffect(() => {
-    if (!chartContainerRef.current) return
-
-    // 1. Initialize Chart
-    const chart = createChart(chartContainerRef.current, {
-      layout: {
-        background: { type: ColorType.Solid, color: "transparent" },
-        textColor: "#94a3b8",
+  // Chart Data - Glow Effect ke saath
+  const data = {
+    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+    datasets: [
+      {
+        fill: true,
+        label: 'Revenue (HFT)',
+        data: [30, 45, 38, 65, 58, 85, 92],
+        borderColor: '#3b82f6', // Nexus Blue
+        backgroundColor: (context) => {
+          const ctx = context.chart.ctx;
+          const gradient = ctx.createLinearGradient(0, 0, 0, 300);
+          gradient.addColorStop(0, 'rgba(59, 130, 246, 0.4)');
+          gradient.addColorStop(1, 'rgba(59, 130, 246, 0)');
+          return gradient;
+        },
+        borderWidth: 3,
+        pointRadius: 0, // Mobile par clean look ke liye point hide kiye hain
+        pointHoverRadius: 6,
+        tension: 0.4, // Curvy lines for modern feel
       },
-      width: chartContainerRef.current.clientWidth,
-      height: 350,
-      grid: {
-        vertLines: { color: "#1e293b" },
-        horzLines: { color: "#1e293b" },
+    ],
+  }
+
+  const options = {
+    responsive: true,
+    maintainAspectRatio: false, // Mobile par height adjust karne ke liye
+    plugins: {
+      legend: { display: false }, // SaaS dashboards mein legend hide rakhte hain
+      tooltip: {
+        mode: 'index',
+        intersect: false,
+        backgroundColor: '#0f172a',
+        titleColor: '#94a3b8',
+        bodyColor: '#fff',
+        borderColor: '#1e293b',
+        borderWidth: 1,
       },
-      timeScale: {
-        borderColor: "#334155",
+    },
+    scales: {
+      x: {
+        grid: { display: false },
+        ticks: { color: '#64748b', font: { size: 10 } },
       },
-    })
-
-    // 2. FIXED: Use addSeries instead of addCandlestickSeries
-    // This is the most stable way in newer versions
-    const candlestickSeries = chart.addSeries(CandlestickSeries, {
-      upColor: "#10b981", 
-      downColor: "#ef4444",
-      borderVisible: false,
-      wickUpColor: "#10b981",
-      wickDownColor: "#ef4444",
-    })
-
-    // 3. Mock Data (Ensuring Ascending Order)
-    const data = [
-      { time: "2026-03-24", open: 4000, high: 5000, low: 3500, close: 4800 },
-      { time: "2026-03-25", open: 4800, high: 5500, low: 4600, close: 5300 },
-      { time: "2026-03-26", open: 5300, high: 5400, low: 4000, close: 4200 },
-      { time: "2026-03-27", open: 4200, high: 5800, low: 4100, close: 5600 },
-      { time: "2026-03-28", open: 5600, high: 6000, low: 5500, close: 5900 },
-      { time: "2026-03-29", open: 5900, high: 6500, low: 5800, close: 6400 },
-      { time: "2026-03-30", open: 6400, high: 7000, low: 6300, close: 6800 },
-    ].sort((a, b) => new Date(a.time).getTime() - new Date(b.time).getTime());
-
-    candlestickSeries.setData(data)
-
-    // 4. Handle Responsive Resize
-    const handleResize = () => {
-      if (chartContainerRef.current) {
-        chart.applyOptions({ width: chartContainerRef.current.clientWidth })
-      }
-    }
-
-    window.addEventListener("resize", handleResize)
-
-    return () => {
-      window.removeEventListener("resize", handleResize)
-      chart.remove()
-    }
-  }, [])
+      y: {
+        grid: { color: '#1e293b' },
+        ticks: { color: '#64748b', font: { size: 10 } },
+        beginAtZero: true,
+      },
+    },
+  }
 
   return (
-    <div className="w-full bg-[#0B0F19] rounded-xl border border-slate-800 p-4">
-      <div ref={chartContainerRef} className="w-full" />
+    <div className="w-full bg-[#020617]/50 backdrop-blur-md border border-slate-800 rounded-3xl p-5 md:p-8 shadow-2xl transition-all">
+      <div className="flex justify-between items-center mb-8">
+        <div>
+          <h3 className="text-white font-bold text-lg italic tracking-tight uppercase">
+            Flux <span className="text-blue-500">Revenue</span>
+          </h3>
+          <p className="text-[10px] text-slate-500 font-mono tracking-widest">[NODE]: B_TECH_CSE_CORE</p>
+        </div>
+        <div className="bg-blue-500/10 text-blue-400 px-3 py-1 rounded-full text-[10px] font-bold border border-blue-500/20">
+          +24.8%
+        </div>
+      </div>
+
+      {/* Chart Wrapper - Mobile par height set hai */}
+      <div className="h-[250px] md:h-[350px] w-full">
+        <Line data={data} options={options} />
+      </div>
     </div>
   )
 }

@@ -6,7 +6,7 @@ export default function AIChatPage() {
     <div className="min-h-screen bg-[#020617] p-6 lg:p-12">
       <div className="max-w-4xl mx-auto space-y-6">
         <div>
-          <h1 className="text-3xl font-bold text-white tracking-tight italic uppercase">Nexus Intelligence</h1>
+          <h1 className="text-3xl font-bold text-white tracking-tight italic uppercase">AI</h1>
           <p className="text-slate-400 text-sm mt-2 font-mono">[MODE]: NEURAL_INTERFACE_READY</p>
         </div>
         
